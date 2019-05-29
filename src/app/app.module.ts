@@ -2,9 +2,14 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+
+import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard, AuthService } from './shared';
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -13,7 +18,9 @@ import { AuthGuard, AuthService } from './shared';
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

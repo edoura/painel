@@ -1,0 +1,43 @@
+
+<div class="container-fluid pt-2">
+  
+  <div class="page-header">
+    <h1>Dashboard</h1>
+    <hr>
+  </div>
+  
+  <div class="card-deck mb-3">
+    <div class="card bg-light card-panel-content">
+
+      <div class="card-header">
+        <h3 class="card-title">Bem Vindo!</h3>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-text text-justify">Aqui você pode administrar seu negócio em tempo real!</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row px-3">
+
+    <div class="col-xl-3 col-lg-6">
+      <app-info-card [bgClass]="'primary'" [icon]="'fa-eye'" [count]="26" [label]="'Vizualizaram!'">
+      </app-info-card>
+    </div>
+
+    <div class="col-xl-3 col-lg-6">
+      <app-info-card [bgClass]="'danger'" [icon]="'fa-heart'" [count]="13" [label]="'Amaram!'"></app-info-card>
+    </div>
+
+    <div class="col-xl-3 col-lg-6">
+      <app-info-card [bgClass]="'warning'" [icon]="'fa-comments'" [count]="12" [label]="'Comentaram!'"></app-info-card>
+    </div>
+
+    <div class="col-xl-3 col-lg-6">
+      <app-info-card [bgClass]="'success'" [icon]="'fa-bullhorn'" [count]="124" [label]="'Compartilharam!'">
+      </app-info-card>
+    </div>
+
+  </div>
+  <!-- End: row -->

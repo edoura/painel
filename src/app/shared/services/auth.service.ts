@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { map, take, tap } from 'rxjs/operators';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   authState: any = null;
+  uid: any;
 
   constructor(private afAuth: AngularFireAuth,
-    private db: AngularFireDatabase,
     private router: Router) {
 
-    this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth
-    });
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.uid = user.uid;
+        localStorage.setItem('uid', JSON.stringify(this.uid));
+        JSON.parse(localStorage.getItem('uid'));
+      } else {
+        localStorage.setItem('uid', null);
+        JSON.parse(localStorage.getItem('uid'));
+      }
+    })
   }
 
   // Returns true if user is logged in
@@ -32,7 +41,7 @@ export class AuthService {
 
   // Returns
   get currentUserObservable(): any {
-    return this.afAuth.authState
+    return this.afAuth.authState;
   }
 
   // Returns current user UID
@@ -78,7 +87,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.authState = credential.user
-        this.updateUserData()
+        //this.updateUserData()
       })
       .catch(error => console.log(error));
   }
@@ -90,7 +99,7 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously()
       .then((user) => {
         this.authState = user
-        this.updateUserData()
+        //this.updateUserData()
       })
       .catch(error => console.log(error));
   }
@@ -129,28 +138,48 @@ export class AuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/'])
+      localStorage.setItem('uid', null);
+      this.router.navigate(['/login'])
     });
   }
 
-  //// Helpers ////
-
-  private updateUserData(): void {
-    // Writes user name and email to realtime db
-    // useful if your app displays information about users or for admin features
-
-    let path = `users/${this.currentUserId}`; // Endpoint on firebase
-    let data = {
-      email: this.authState.email,
-      name: this.authState.displayName
-    }
-
-    this.db.object(path).update(data)
-      .catch(error => console.log(error));
-
+  get isLoggedIn(): boolean {
+    const uid = JSON.parse(localStorage.getItem('uid'));
+    return (uid !== null) ? true : false;
   }
 
-
-
+  /*  isAuthenticated() {
+      return this.currentUserObservable.pipe(
+        take(1),
+        map(user => {
+          console.log('user: ', user);
+          return !!user
+        }),
+        tap(loggedIn => {
+          console.log("loggedIn: ", loggedIn);
+          if (!loggedIn) {
+            console.log("access denied");
+            this.router.navigate(['/login']);
+          }
+        })
+      );
+    }
+  
+    // Helpers //
+  
+      private updateUserData(): void {
+        // Writes user name and email to realtime db
+        // useful if your app displays information about users or for admin features
+  
+        let path = `users/${this.currentUserId}`; // Endpoint on firebase
+        let data = {
+          email: this.authState.email,
+          name: this.authState.displayName
+        }
+  
+        this.db.object(path).update(data)
+          .catch(error => console.log(error));
+  
+      } */
 
 }

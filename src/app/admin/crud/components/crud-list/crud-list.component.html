@@ -1,0 +1,32 @@
+<div class="card-deck mb-3">
+    <div class="card bg-light card-panel-content">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>key</th>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of entities">
+                <td>{{e.id}}</td>
+                <td>{{e.$key}}</td>
+                <td>{{e.cod}}</td>
+                <td>{{e.desc}}</td>
+                <td class="action-block">
+                  <!-- routerLink="/edit-student/{{student.$key}}" is refered to { path: 'edit-student/:id', component: EditStudentComponent } in app-routing.moudles.ts -->
+                  <a href="" class="fa fa-search"></a>
+                  <a href="" class="fa fa-edit"></a>
+                  <a href="" class="fa fa-trash"></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
