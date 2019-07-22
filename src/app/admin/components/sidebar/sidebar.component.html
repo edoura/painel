@@ -2,23 +2,33 @@
   <ul class="nav flex-column">
     <li class="nav-item">
       <a class="nav-link px-2 text-dark" [routerLink]="['/dashboard']">
-        <span class="fa fa-fw fa-dashboard"></span>
-        <span class="align-middle link-label px-1" *ngIf="collapsed">Dashboard</span>
-        <span class="sr-only">(current)</span>
+        <span class="fa fa-home fa-lg fa-fw" ></span>
+        <span class="align-middle link-label pl-2" *ngIf="collapsed">Painel</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link px-2 text-dark" [routerLink]="['/crud']">
-        <span class="fa fa-fw fa-edit"></span>
-        <span class="align-middle link-label px-1" *ngIf="collapsed">CRUD - Base</span>
-        <span class="sr-only">(current)</span>
+        <span class="fa fa-clipboard fa-lg fa-fw"></span>
+        <span class="align-middle link-label pl-2" *ngIf="collapsed">Necessidades</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link px-2 text-dark" href="" (click)="clickLogout();">
-        <span class="fa fa-fw fa-sign-out"></span>
-        <span class="align-middle link-label px-1" *ngIf="collapsed">Sair</span>
-        <span class="sr-only">(current)</span>
+        <span class="fas fa-link fa-lg fa-fw"></span>
+        <span class="align-middle link-label pl-2" *ngIf="collapsed">Integrações</span>
+      </a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link px-2 text-dark" href="" (click)="clickLogout();">
+        <span class="fa fa-qrcode fa-lg fa-fw"></span>
+        <span class="align-middle link-label pl-2" *ngIf="collapsed">No offline</span>
+      </a>
+    </li> -->
+    <div class="dropdown-divider"></div>
+    <li class="nav-item">
+      <a class="nav-link px-2 text-dark" href="" (click)="clickLogout();">
+        <span class="far fa-edit fa-lg fa-fw"></span>
+        <span class="align-middle link-label pl-2" *ngIf="collapsed">Editar perfil</span>
       </a>
     </li>
   </ul>

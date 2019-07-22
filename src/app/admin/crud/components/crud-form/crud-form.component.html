@@ -1,19 +1,91 @@
 <ng-template #template>
 
+  <form (keydown.enter)="$event.preventDefault()">
     <div class="modal-header border-bottom-0 bg-light">
-      <h5 class="modal-title">Institucional</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <h5 class="modal-title"><strong>Do que necessitam?</strong></h5>
+      <button *ngIf="needTypeSelected == ''" type="button" class="close pull-right" aria-label="Close"
+        (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body py-1 bg-light text-justify">
-      <p class="text-muted mb-lg-0">Um local para <strong>Solidários</strong> conhecerem as <strong>Entidades Sociais</strong> com as causas mais nobres do
-        planeta - todas engajadas em prol dos <a title="Objetivos de Desenvolvimento Sustentável" target="_blank"
-          href="https://nacoesunidas.org/pos2015/agenda2030/">ODS</a>.</p>
+
+    <div class="modal-body py-1 text-justify bg-light rounded">
+      <select class="form-control form-control-lg mb-3" (change)="selectChangeHandler($event)">
+        <option value="0" selected="true" disabled="disabled">Tipo da necessidade</option>
+        <option value="1">Trabalho voluntário</option>
+        <option value="2">Doação de material</option>
+        <option value="3">Doação em dinheiro $</option>
+      </select>
+      <input class="form-control form-control-lg" type="text" placeholder="Título" *ngIf="needTypeSelected != ''">
+      <small class="text-muted" *ngIf="needTypeSelected == 1"><b>Ex.: </b><i>"Fisioterapeuta", "Companhia para idosos",
+          "Pintor"</i></small>
+      <small class="text-muted" *ngIf="needTypeSelected == 2"><b>Ex.: </b><i>"Moletons", "Fraldas Geriátricas",
+          "Leite"</i></small>
+      <small class="text-muted" *ngIf="needTypeSelected == 3"><b>Ex.: </b><i>"Manutenção no portão", "Realização de
+          eventos"</i></small>
+
+      <div id="show-em-trabalho-voluntaio" class="input-group mt-3" *ngIf="needTypeSelected == 1">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><b>Período</b></span>
+        </div>
+        <input type="text" class="form-control text-center" placeholder="De - Até" aria-describedby="basic-addon1">
+      </div>
+
+      <div id="show-em-doacao-material" class="form-row mt-3" *ngIf="needTypeSelected == 2">
+        <div class="col-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>Unidades</b></span>
+            </div>
+            <input type="number" class="form-control text-center" placeholder="0" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Até quando" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2"><i class="far fa-calendar-alt"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="show-em-doacao-finandeira" class="form-row mt-3" *ngIf="needTypeSelected == 3">
+        <div class="col-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><b>R$</b></span>
+            </div>
+            <input type="text" class="form-control text-right" placeholder="Valor" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Até quando" aria-describedby="basic-addon2" bsDaterangepicker>
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2"><i class="far fa-calendar-alt"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <textarea *ngIf="needTypeSelected != ''" class="form-control form-control-lg my-3" rows="3"
+        placeholder="Descreva..."></textarea>
+
+      <div *ngIf="needTypeSelected != ''"
+        class="image-upload border border-secondary rounded-circle mx-auto d-flex justify-content-center align-items-center">
+        <label for="file-input" class="fa fa-camera fa-2x mt-2"></label>
+        <input id="file-input" type="file" class="d-none" accept="image/*" capture />
+      </div>
+      <p class="text-center text-muted my-0" *ngIf="needTypeSelected != ''"><small>Imagem da situação atual</small></p>
+
     </div>
-    <div class="modal-footer border-top-0 bg-light py-0">
-      <p><small>Saiba mais <a title="Central Institucional" target="_blank"
-            href="https://central.ongbook.org">aqui</a>.</small></p>
+
+    <div class="modal-footer border-top-0 bg-light" *ngIf="needTypeSelected != ''">
+      <button type="reset" class="btn btn-link" (click)="modalRef.hide()">Cancelar</button>
+      <button type="submit" class="btn btn-dark">Divulgar</button>
     </div>
-  
-  </ng-template>
+
+  </form>
+
+</ng-template>

@@ -1,6 +1,14 @@
 nav#navbar-top {
-    top: 0;
-    z-index: 99;
-    width: 100%;
-  }
-  
+  top: 0;
+  z-index: 99;
+  width: 100%;
+}
+
+.dropdown-item:active {
+  color: #777777;
+  background-color: #f7f7f7;
+}
+
+#menu-topbar {
+  cursor: pointer;
+}

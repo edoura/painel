@@ -2,7 +2,7 @@
 
 <div id="wrapper" class="container-fluid px-0">
     <app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
-    <main class="uncollapsed" [ngClass]="{collapsed: collapedSideBar}">
+    <main class="uncollapsed pt-2" [ngClass]="{collapsed: collapedSideBar}">
         <router-outlet></router-outlet>
     </main>
 </div>

@@ -1,41 +1,139 @@
+<div class="container-fluid">
 
-<div class="container-fluid pt-2">
-  
-  <div class="page-header">
-    <h1>Dashboard</h1>
-    <hr>
+  <h1 class="h3 d-inline">Painel</h1>
+  <div class="btn-group d-inline pull-right" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-sm btn-light"><i class="fas fa-play"></i></button>
+    <button type="button" class="btn btn-sm btn-light"><i class="fas fa-question"></i></button>
   </div>
-  
-  <div class="card-deck mb-3">
-    <div class="card bg-light card-panel-content">
+  <hr class="mt-2">
 
-      <div class="card-header">
-        <h3 class="card-title">Bem Vindo!</h3>
+  <div class="row px-3 d-flex justify-content-end">
+
+    <div class="col-6 col-sm-2 px-2 float-right">
+      <div class="card bg-success border-0 mb-3" [routerLink]="['/crud']" style="cursor: pointer">
+        <div class="card-body p-2 text-white text-center">
+          <span class="far fa-lg fa-heart"></span>
+          <h6 class="card-text"><small>Divulgue demanda</small></h6>
+        </div>
       </div>
+    </div>
 
+    <div class="col-6 col-sm-2 px-2">
+      <div class="card bg-warning border-0 mb-3" [routerLink]="['/crud']" style="cursor: pointer">
+        <div class="card-body p-2 text-white text-center">
+          <span class="far fa-lg fa-edit"></span>
+          <h6 class="card-text"><small>Atualize sua ONG</small></h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-sm-2 px-2">
+      <div class="card bg-light border-0 mb-3" [routerLink]="['/crud']" style="cursor: pointer">
+        <div class="card-body p-2 text-dark text-center">
+          <div class="d-flex my-1">
+            <span class="fa fa-facebook-square fa-lg mx-auto"></span>
+            <span class="fa fa-linkedin-square fa-lg mx-auto"></span>
+            <!-- <span class="fa fa-github fa-lg mx-auto"></span> -->
+            <span class="fa fa-instagram fa-lg mx-auto"></span>
+            <span class="fa fa-twitter fa-lg mx-auto"></span>
+          </div>
+          <h6 class="card-text"><small>Integre redes - 0%</small></h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col col-sm-2 px-2">
+      <div class="card bg-dark border-0 mb-3">
+        <div class="card-body p-2 text-light text-center">
+          <span class="fa fa-qrcode fa-lg"></span>
+          <h6 class="card-text"><small>Divulge offline</small></h6>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+
+
+  <div id="welcome-msg" class="card-deck mb-sm-3">
+    <div class="card bg-light card-panel-content">
       <div class="card-body">
-        <h5 class="card-text text-justify">Aqui você pode administrar seu negócio em tempo real!</h5>
+        <button aria-label="Close" class="close pull-right" type="button"
+          onclick="getElementById('welcome-msg').remove();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="h5 card-title">Sejam bem vindo!</h2>
+        <p class="card-text text-justify">Muito obrigado por estarem aqui, isso significa que acreditam em nossos
+          <strong>propósitos</strong>, que são estreitar e enriquecer a relação entre <strong>ONGs</strong> e
+          <strong>Pessoas</strong>, facilitar e incentivar ações de solidariedade entre outros. <br>
+          Em fase inicial, nosso objetivo é colher opiniões e sugestões de vocês para construirmos esta
+          plataforma. Por enquanto, a Entidade Social poderá cadastrar e divulgar suas demandas, manter seus perfis
+          atualizados e também integrar o acesso às redes sociais que estiverem cadastradas, assim toda vez que
+          cadastrar uma demanda aqui pelo <strong>Admin Ongbook</strong>, automaticamente será divulgada nessas
+          redes.<br>
+          <small>Conte conosco! Estamos à disposição através dos contatos: (27) 3145-1223 e ong@ongbook.org.</small>
+        </p>
+        <!-- <p class="card-text text-right"><small class="text-muted">Mensagem atualizada há 2 min</small></p> -->
       </div>
     </div>
   </div>
 
-  <div class="row px-3">
+  <div class="card-deck">
 
-    <div class="col-xl-3 col-lg-6">
-      <app-info-card [bgClass]="'primary'" [icon]="'fa-eye'" [count]="26" [label]="'Vizualizaram!'">
+    <div class="col-sm-8 px-0">
+      <div class="card bg-light card-panel-content">
+        <div class="card-body">
+          <h5 class="card-title">Envie-nos sugestões</h5>
+          <p class="card-text">Como podemos melhorar a experiência aqui?</p>
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="2"></textarea>
+            </div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-warning">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="parceiros" class="col-sm-4 px-0">
+      <div class="card bg-light card-panel-content ml-0">
+        <div class="card-body">
+          <button aria-label="Close" class="close pull-right d-block d-sm-none" type="button"
+            onclick="getElementById('parceiros').remove();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="card-title">Parceiro</h5>
+          <img src="https://ongbook-9c3ec.firebaseapp.com/img/parceiros/1.png" class="mx-auto d-block img-fluid"
+            width="100" alt="KASD Organização Contábil">
+          <p class="text-center text-muted mt-2 mb-0"><small><strong><a class="text-muted"
+                  href="https://goo.gl/maps/hJDgar7FywLRDNW36" target="_blank">KASD Contábil</a></strong><br>
+              Credibilidade conquistada há
+              mais de 25 anos</small></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- End: card-deck -->
+
+  <div class="row mt-sm-3">
+
+    <div class="col-sm-6 col-lg-3 mb-2">
+      <app-info-card [bgClass]="'dark'" [icon]="'fa-eye'" [count]="26" [label]="'Vizualizaram!'">
       </app-info-card>
     </div>
 
-    <div class="col-xl-3 col-lg-6">
+    <div class="col-sm-6 col-lg-3 mb-2">
       <app-info-card [bgClass]="'danger'" [icon]="'fa-heart'" [count]="13" [label]="'Amaram!'"></app-info-card>
     </div>
 
-    <div class="col-xl-3 col-lg-6">
-      <app-info-card [bgClass]="'warning'" [icon]="'fa-comments'" [count]="12" [label]="'Comentaram!'"></app-info-card>
+    <div class="col-sm-6 col-lg-3 mb-2">
+      <app-info-card [bgClass]="'dark'" [icon]="'fa-comments'" [count]="12" [label]="'Comentaram!'"></app-info-card>
     </div>
 
-    <div class="col-xl-3 col-lg-6">
-      <app-info-card [bgClass]="'success'" [icon]="'fa-bullhorn'" [count]="124" [label]="'Compartilharam!'">
+    <div class="col-sm-6 col-lg-3 mb-2">
+      <app-info-card [bgClass]="'dark'" [icon]="'fa-bullhorn'" [count]="124" [label]="'Compartilharam!'">
       </app-info-card>
     </div>
 

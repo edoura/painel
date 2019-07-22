@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-crud-form',
@@ -9,12 +10,17 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 })
 export class CrudFormComponent implements OnInit {
 
-  public modalRef: BsModalRef;
-
   @ViewChild('template')
   private templateRef: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService) { }
+  needTypeSelected = '';
+  public modalRef: BsModalRef;
+
+  selectChangeHandler(event: any) {
+    this.needTypeSelected = event.target.value;
+  }
+
+  constructor(private modalService: BsModalService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.modalRef = this.modalService.show(this.templateRef, { backdrop: 'static', keyboard: false });

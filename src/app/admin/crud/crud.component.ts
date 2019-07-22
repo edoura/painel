@@ -22,7 +22,7 @@ export class CRUDComponent implements OnInit {
         this.entities = [];
 
         data.forEach(i => {
-          
+
           let e = i.payload.toJSON();
           e['$key'] = i.key;
 
@@ -32,7 +32,7 @@ export class CRUDComponent implements OnInit {
   }
 
   saveObj() {
-    let e = {id:3, cod:'aaa',desc:'aaaaa desc'}
+    const e = { id: 3, cod: 'aaa', desc: 'aaaaa desc' };
     this.service.Add(e as Entity);
   }
 
